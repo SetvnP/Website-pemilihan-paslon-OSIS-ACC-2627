@@ -1,0 +1,71 @@
+body{
+    background-image: url(pictures/windows\ xp\ .png);
+    background-size:cover;
+}
+
+.allofit{
+    margin-top: 5px;
+}
+
+h3:not(.test){
+    margin-bottom: 2px;
+}
+
+.test{
+    margin-top: 2px;
+}
+
+.login_box{
+    align-content: center;
+    justify-content:space-between;
+    border: 2px solid black;
+    width: 810px;
+    height: 80vh;
+    padding-left: 450px;
+}
+
+.namapengguna{
+    height: 23px;
+    width: 400px;
+    cursor: pointer;
+}
+.kelas{
+    height: 23px;
+    width: 400px;
+    padding: 12px;
+    for-size:14px;
+    border: 1px solid;
+    border-radius: 4px;
+    cursor:pointer;
+    color:#fff;
+
+}
+.password{
+    height: 23px;
+    width: 400px;
+}
+
+.GambarOsis{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    height: 25;
+}
+.GambarAssisi{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 25;
+}
+.Dropdown-Pilih{
+    width: 400px;
+    padding: 12px;
+    font-size: 14px;
+    height: 23px;
+    border: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+
+
+}
