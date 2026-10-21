@@ -96,10 +96,10 @@ h3:not(.test){
 
 .Dropdown-Pilih{
     width: 407px;
-    padding: 12px;
+    padding: 8px 12px;
     font-size: 14px;
-    height: 23px;
-    border: 1px ;
+    height: auto;
+    border: 1px ;   
     border-radius: 4px;
     cursor: pointer;
     
@@ -113,4 +113,6 @@ h3:not(.test){
     margin-bottom: 8px;
     margin: 4px;
     border: 1px;
+    color:black;
+    font-size:12px;
 }
