@@ -1,0 +1,37 @@
+@font-face {
+    font-family: 'Alata';
+    src: url(xtra/Alata-Regular.ttf) format('TrueType Font');
+}
+
+body{
+    background-image: url(pictures/Main/Main\ bg.png);
+    background-size:cover;
+    font-family: 'Alata';
+}
+
+.paslon1 img{
+	position: absolute;
+	height: auto;
+	width: 250px;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 100px;
+}
+
+.paslon2 img{
+	position: absolute;
+	height: auto;
+	width: 250px;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 500px;
+}
+
+.paslon3 img{
+	position: absolute;
+	height: auto;
+	width: 250px;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 900px;
+}
