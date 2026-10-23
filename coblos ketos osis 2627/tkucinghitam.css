@@ -32,36 +32,39 @@ body{
 
 }
 .tulisan{
-    width: 1100px;
+    width: 150vh;
     height: auto;
     position: absolute;
-    top: -35px;
-    left: 52%;
+    top: -3%;
+    left: 51%;
     transform: translateX(-50%)
 }
 
 .elementosis{
-    width: 1300px;
+    width: 210vh;
     height: auto;
     position: fixed;
-    left: -60px;
-    bottom: -180px;
+    left: -3%;
+    bottom: -29%;
 }
 
 .thankyougif{
-    width: 260px;
-    height: auto;
+    display:flex;
+
+    justify-items:center;
+    height: 50vh;
     position: fixed;
-    bottom: 37px;
-    left: 480px;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%)
 }
 
 .coolcountdown{
     position: absolute;
     font-family: '0xProto';
-    font-size: 28px;
+    font-size: 33px;
     color: white;
     text-shadow: 0 0 4px #fff;
-    left: 870px;
-    top: 170px;
+    left: 66.5%;
+    top: 25.5%;
 }
