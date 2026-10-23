@@ -11,16 +11,16 @@ body{
 
 .GambarOsis{
     position: absolute;
-    top: 14px;
-    right: 20px;
-    height: 25;
+    top: 3%;
+    right: 2%;
+    height: 15%;
 }
 
 .GambarAssisi{
     position: absolute;
-    top: 16px;
-    left: 20px;
-    height: 25;
+    top: 3.2%;
+    left: 2%;
+    height: 10.5%;
 }
 
 .box_terimakasih{
@@ -31,6 +31,7 @@ body{
     margin-top: 250px;
 
 }
+
 .tulisan{
     width: 150vh;
     height: auto;
@@ -44,27 +45,32 @@ body{
     width: 210vh;
     height: auto;
     position: fixed;
-    left: -3%;
+    left: -8%;
     bottom: -29%;
 }
 
 .thankyougif{
     display:flex;
-
     justify-items:center;
     height: 50vh;
     position: fixed;
     bottom: 10vh;
     left: 50%;
-    transform: translateX(-50%)
+    transform: translateX(-50%);
+}
+
+.timerbox{
+    position: relative;
 }
 
 .coolcountdown{
-    position: absolute;
+    position: fixed;
+    display: flex;
+    width: fit-content;
     font-family: '0xProto';
-    font-size: 33px;
+    font-size: 200%;
     color: white;
     text-shadow: 0 0 4px #fff;
-    left: 66.5%;
-    top: 25.5%;
+    left: 68%;
+    top: 23.5%;
 }

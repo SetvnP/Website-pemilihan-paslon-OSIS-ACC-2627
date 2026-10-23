@@ -21,7 +21,9 @@
     <img class="elementosis" src="pictures/Thankyou/OSIS elements tybg.png">
     <img class="thankyougif" src="pictures/Thankyou/thank you gif (6s).gif">
 
-    <p class="coolcountdown" id="timerboom"></p>
+    <div class="timerbox">
+        <p class="coolcountdown" id="timerboom"></p>
+    </div>
 
     <script>
         let timer;
@@ -42,7 +44,7 @@
 
                 if (count === 0) {
                     clearInterval(timer);
-                  window.location.href = "https://youtu.be/3wVvwd4oI1Y";
+                //  window.location.href = "https://youtu.be/3wVvwd4oI1Y";
                 }
             }, 1000);
         }
