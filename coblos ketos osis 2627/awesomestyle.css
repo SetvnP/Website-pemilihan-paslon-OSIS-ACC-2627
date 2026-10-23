@@ -30,6 +30,8 @@ h3:not(.test){
 }
 
 .login_box{
+    display: flex;
+    flex-direction: column;
     position: relative;
     justify-self: center;
     margin-top: 250px;
@@ -38,37 +40,78 @@ h3:not(.test){
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.75);
     width: 550px;
-    height: 400px;
+    height: 370px;
     font-family: 'Alata';
     pointer-events: all;
 }
 
 .namapengguna{
-    height: 23px;
+    height: 33px;
     width: 400px;
     cursor: pointer;
     font-family: 'Alata';
     border: 1px solid black;
     border-radius: 3px;
+    margin-top: 58px;
+    margin-bottom: 32px;
+    margin-left: 66px;
 }
-.kelass{
-    height: 23px;
-    width: 400px;
-    padding: 12px;
-    font-size:14px;
-    border: 1px solid;
-    border-radius: 4px;
-    cursor:pointer;
-    font-family: 'Alata';
 
+.Dropdown-Pilih{
+    width: 405px;
+    padding: 8px 12px;
+    font-size: 14px;
+    height: auto;
+    border: 2px ;   
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Alata';
+    margin-bottom: 32px;
+    margin-left: 66px;
 }
-.password{
-    height: 23px;
-    width: 400px;
+
+.Password{
+    height: 13px;
+    width: 382px;
+    margin-bottom: 32px;
+    border: 1px solid black;
+    border-radius: 4px;
     padding:12px;
     font-size:14px;
     cursor: pointer;
     font-family: 'Alata';
+    margin-left: 66px;
+}
+
+.masuk{
+    height: 37px;
+    width: 407px;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size:14px;
+    cursor: pointer;
+    font-family: 'Alata';
+    background-color: lightskyblue;
+    margin-left: 66px;
+    margin-top: auto;
+    margin-bottom: 30px;
+}
+
+.masuk:hover{
+    background-color: #3399ff;
+}
+
+.BoxNya{
+    display: block;
+    width:300px;
+    height:23px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    margin: 4px;
+    border: 1px;
+    border-radius: 4px;
+    color:black;
+    font-size:12px;
 }
 
 .GambarOsis{
@@ -94,25 +137,3 @@ h3:not(.test){
     height: 25;
 }
 
-.Dropdown-Pilih{
-    width: 407px;
-    padding: 8px 12px;
-    font-size: 14px;
-    height: auto;
-    border: 1px ;   
-    border-radius: 4px;
-    cursor: pointer;
-    
-}
-
-.BoxNya{
-    display: block;
-    width:300px;
-    height:23px;
-    cursor: pointer;
-    margin-bottom: 8px;
-    margin: 4px;
-    border: 1px;
-    color:black;
-    font-size:12px;
-}
