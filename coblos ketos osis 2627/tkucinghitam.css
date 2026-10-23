@@ -59,18 +59,13 @@ body{
     transform: translateX(-50%);
 }
 
-.timerbox{
-    position: relative;
-}
-
 .coolcountdown{
-    position: fixed;
+    position: absolute;
     display: flex;
-    width: fit-content;
     font-family: '0xProto';
-    font-size: 200%;
+    font-size: 2em;
     color: white;
     text-shadow: 0 0 4px #fff;
-    left: 68%;
+    right: 27.5%;
     top: 23.5%;
 }
