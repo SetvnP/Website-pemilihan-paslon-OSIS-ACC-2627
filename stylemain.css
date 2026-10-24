@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'Alata';
+    src: url(xtra/Alata-Regular.ttf) format('TrueType Font');
+}
+
+body{
+    background-image: url(pictures/Main/Main\ bg.png);
+    background-size:cover;
+    font-family: 'Alata';
+}
+.Teks-Judul{
+	text-align:center;
+	font-size:5rem;
+	margin-top:90px;
+	margin-bottom:0;
+
+}
+.pilihan{
+	display: flex;
+	align-items:center;
+	justify-content: center;
+	gap:100px;
+	min-height:calc(100vh - 120px);
+}
+
+.paslon-item{
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	background: rgba(255, 255, 255, 0.1);
+	padding: 20px;
+	border-radius: 15px;
+	backdrop-filter: blur(5px);
+	transition: transform 0.5s ease, background 0.3 ease;
+}
+
+.paslon-item:hover{
+	background: rgba(255, 255, 255, 0.2);
+}
+.paslon-item img{
+	height: auto;
+	width: 250px;
+	transition: transform 0.5s ease;
+}
+.info-card{
+	width: 0;
+	max-width: 0;
+	overflow: hidden;
+	opacity: 0;
+	white-space: nowrap;
+	color: #fff;
+	transition: all 0.5s ease;
+	margin-left: 0;
+}
+.paslon-item.active .info-card{
+	width:300px;
+	max-width: 300px;
+	opacity:1;
+	margin-left:25px;
+	white-space: normal;
+}
+.pilihan.has-active .paslon-item:not(.active){
+	transform:scale(0.9);
+	opacity:0.5;
+}

@@ -1,0 +1,72 @@
+@font-face {
+    font-family: '0xProto';
+    src: url(xtra/0xProto-Bold.otf) format('OpenType');
+}
+
+body{
+    background-image: url(pictures/Thankyou/Thank\ you\ bg\ no\ text.png);
+    background-size: cover;
+    overflow-x: clip;
+    
+}
+
+.GambarOsis{
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    height: 15%;
+}
+
+.GambarAssisi{
+    position: absolute;
+    top: 3.2%;
+    left: 2%;
+    height: 10.5%;
+}
+
+.box_terimakasih{
+    position: flex;
+    justify-content: center;
+    justify-self:center;
+    margin:4px;
+    margin-top: 250px;
+
+}
+
+.tulisan{
+    width: 150vh;
+    height: auto;
+    position: absolute;
+    top: -21%;
+    left: 51%;
+    transform: translateX(-50%)
+}
+
+.elementosis{
+    width: 210vh;
+    height: auto;
+    position: fixed;
+    left: -3%;
+    bottom: -29%;
+}
+
+.thankyougif{
+    display:flex;
+    justify-items:center;
+    height: 50vh;
+    position: fixed;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.coolcountdown{
+    position: absolute;
+    display: flex;
+    font-family: '0xProto';
+    font-size: 2em;
+    color: white;
+    text-shadow: 0 0 4px #fff;
+    right: 27.5%;
+    top: 23.5%;
+}
