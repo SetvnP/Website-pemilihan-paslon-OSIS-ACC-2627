@@ -7,59 +7,122 @@ body{
     background-image: url(pictures/Main/Main\ bg.png);
     background-size:cover;
     font-family: 'Alata';
+	overflow-x: clip;
 }
+
 .Teks-Judul{
 	text-align:center;
 	font-size:5rem;
 	margin-top:90px;
 	margin-bottom:0;
-
-}
-.pilihan{
-	display: flex;
-	align-items:center;
-	justify-content: center;
-	gap:100px;
-	min-height:calc(100vh - 120px);
 }
 
-.paslon-item{
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	background: rgba(255, 255, 255, 0.1);
-	padding: 20px;
-	border-radius: 15px;
-	backdrop-filter: blur(5px);
-	transition: transform 0.5s ease, background 0.3 ease;
-}
-
-.paslon-item:hover{
-	background: rgba(255, 255, 255, 0.2);
-}
-.paslon-item img{
+.textmain{
+	position: absolute;
+	top: 3%;
+	left: 50%;
+	transform: translateX(-50%);
 	height: auto;
-	width: 250px;
-	transition: transform 0.5s ease;
+	width: 78%;
+	top: 9%;
+
 }
-.info-card{
-	width: 0;
-	max-width: 0;
-	overflow: hidden;
-	opacity: 0;
-	white-space: nowrap;
-	color: #fff;
-	transition: all 0.5s ease;
-	margin-left: 0;
+
+.GambarOsis{
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    height: 15%;
 }
-.paslon-item.active .info-card{
-	width:300px;
-	max-width: 300px;
-	opacity:1;
-	margin-left:25px;
-	white-space: normal;
+
+.GambarAssisi{
+    position: absolute;
+    top: 3.2%;
+    left: 2%;
+    height: 10.5%;
 }
-.pilihan.has-active .paslon-item:not(.active){
-	transform:scale(0.9);
-	opacity:0.5;
+
+
+.pilihan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    margin-top: 12em;
+    padding: 20px;
 }
+
+.paslon-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.4s ease, background 0.3s ease;
+}
+
+.paslon-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.paslon-item img {
+    width: 250px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.info-card {
+    width: 0;
+    max-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    white-space: nowrap;
+    color: #fff;
+    margin-left: 0;
+    transition: width 0.5s ease,
+                max-width 0.5s ease,
+                opacity 0.5s ease,
+                margin-left 0.5s ease;
+}
+
+.paslon-item.active .info-card {
+    width: 300px;
+    max-width: 300px;
+    opacity: 1;
+    margin-left: 25px;
+    white-space: normal;
+}
+
+
+/* Darken the background when a candidate is selected */
+.pilihan.has-active::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 5;
+}
+
+/* Keep all candidates visible */
+.pilihan.has-active .paslon-item:not(.active) {
+    position: relative;
+    z-index: 6;
+    opacity: 0.15;
+}
+
+/* Selected candidate */
+.pilihan.has-active .paslon-item.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 7;
+    opacity: 1;
+    background: rgba(35, 35, 45, 0.98);
+    max-width: 95vw;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
