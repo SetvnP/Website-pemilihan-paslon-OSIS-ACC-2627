@@ -1,46 +1,148 @@
 
-let selectedCandidate = null;
+const pilihanContainer = document.querySelector(".pilihan");
+const confirmOverlay = document.querySelector("#confirmOverlay");
+const confirmMessage = document.querySelector("#confirmMessage");
+const cooldownText = document.querySelector("#cooldownText");
+const yesBtn = document.querySelector("#yesBtn");
+const cancelBtn = document.querySelector("#cancelBtn");
 
-const overlay = document.querySelector("#candidateOverlay");
-const preview = document.querySelector("#candidatePreview");
+let cooldownTimer = null;
+let selectedCandidate = null;
+let confirmed = false;
 
 function pilihPaslon(element) {
-    // Clicking the already selected original candidate again
-    // does not reopen or change the selection.
-    if (selectedCandidate === element) {
+    // Clicking an already selected candidate opens the popup
+    if (element.classList.contains("active")) {
+        bukaKonfirmasi(element);
         return;
     }
 
+    // Select a different candidate
+    document.querySelectorAll(".paslon-item").forEach(item => {
+        item.classList.remove("active");
+    });
+
+    element.classList.add("active");
+    pilihanContainer.classList.add("has-active");
+
     selectedCandidate = element;
-
-    // Copy the candidate's content into the separate overlay.
-    preview.innerHTML = element.innerHTML;
-
-    overlay.classList.add("show");
 }
 
-// Clicking outside the preview cancels the selection.
-overlay.addEventListener("click", function(event) {
-    if (event.target === overlay) {
-        tutupPilihan();
+function bukaKonfirmasi(element) {
+    selectedCandidate = element;
+    confirmed = false;
+
+    confirmMessage.textContent =
+        "Apakah kamu yakin ingin memilih pasangan calon ini? " +
+        "Pastikan pilihanmu sudah benar.";
+
+    cooldownText.textContent =
+        "Tunggu 3 detik sebelum melanjutkan...";
+
+    yesBtn.disabled = true;
+    yesBtn.textContent = "Ya, Pilih";
+    cancelBtn.textContent = "Batal";
+
+    confirmOverlay.classList.add("show");
+
+    clearTimeout(cooldownTimer);
+
+    // Wait three seconds before enabling confirmation
+    let seconds = 3;
+    cooldownText.textContent =
+        `Tunggu ${seconds} detik sebelum melanjutkan...`;
+
+    cooldownTimer = setInterval(() => {
+        seconds--;
+
+        if (seconds > 0) {
+            cooldownText.textContent =
+                `Tunggu ${seconds} detik sebelum melanjutkan...`;
+        } else {
+            clearInterval(cooldownTimer);
+            cooldownTimer = null;
+
+            cooldownText.textContent =
+                "Kamu sekarang dapat mengonfirmasi pilihan.";
+
+            yesBtn.disabled = false;
+        }
+    }, 1000);
+}
+
+function tutupKonfirmasi() {
+    confirmOverlay.classList.remove("show");
+
+    clearInterval(cooldownTimer);
+    clearTimeout(cooldownTimer);
+    cooldownTimer = null;
+}
+
+// Cancel button
+cancelBtn.addEventListener("click", () => {
+    if (confirmed) {
+        tutupKonfirmasi();
+        return;
+    }
+
+    tutupKonfirmasi();
+});
+
+// Confirmation button
+yesBtn.addEventListener("click", () => {
+    if (yesBtn.disabled || !selectedCandidate || confirmed) {
+        return;
+    }
+
+    confirmed = true;
+
+    clearInterval(cooldownTimer);
+    cooldownTimer = null;
+
+    confirmMessage.textContent =
+        "Terima kasih! Pilihan kamu telah dikonfirmasi.";
+
+    cooldownText.textContent = "";
+
+    yesBtn.disabled = true;
+    yesBtn.style.display = "none";
+    cancelBtn.textContent = "Tutup";
+});
+
+// Clicking outside the popup closes it
+confirmOverlay.addEventListener("click", event => {
+    if (event.target === confirmOverlay) {
+        tutupKonfirmasi();
     }
 });
 
-// Clicking the displayed candidate a second time asks for confirmation.
-preview.addEventListener("click", function() {
-    const konfirmasi = confirm(
-        "Apakah kamu yakin ingin memilih paslon ini? " +
-        "Pilihan yang sudah dikonfirmasi tidak dapat diubah."
+// Prevent popup clicks from triggering the outside-click handler
+confirmOverlay.addEventListener("click", event => {
+    event.stopPropagation();
+});
+
+// Clicking outside the selected candidate cancels the selection
+document.addEventListener("click", event => {
+    if (confirmOverlay.classList.contains("show")) {
+        return;
+    }
+
+    const activeCandidate = document.querySelector(
+        ".paslon-item.active"
     );
 
-    if (konfirmasi) {
-        alert("Terima kasih! Pilihan kamu telah dikonfirmasi.");
-        tutupPilihan();
+    if (!activeCandidate) return;
+
+    if (!activeCandidate.contains(event.target)) {
+        activeCandidate.classList.remove("active");
+        pilihanContainer.classList.remove("has-active");
+        selectedCandidate = null;
     }
 });
 
-function tutupPilihan() {
-    overlay.classList.remove("show");
-    preview.innerHTML = "";
-    selectedCandidate = null;
-}
+// Reset the popup button for the next time it opens
+confirmOverlay.addEventListener("transitionend", () => {
+    if (!confirmOverlay.classList.contains("show")) {
+        yesBtn.style.display = "";
+    }
+});
