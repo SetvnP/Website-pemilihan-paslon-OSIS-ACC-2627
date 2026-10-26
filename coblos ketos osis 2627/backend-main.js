@@ -32,6 +32,8 @@ function bukaKonfirmasi(element) {
     selectedCandidate = element;
     confirmed = false;
 
+    const namaPaslon = element.querySelector('.info-card h3').textContent;
+
     confirmMessage.textContent =
         "Apakah kamu yakin ingin memilih pasangan calon ini? " +
         "Pastikan pilihanmu sudah benar.";
@@ -103,13 +105,58 @@ yesBtn.addEventListener("click", () => {
     confirmMessage.textContent =
         "Terima kasih! Pilihan kamu telah dikonfirmasi.";
 
-    cooldownText.textContent = "";
+    cooldownText.textContent = "Bentar Yak";
 
     yesBtn.disabled = true;
     yesBtn.style.display = "none";
     cancelBtn.textContent = "Tutup";
-});
 
+    // 1. Ambil nama paslon yang dipilih
+    const namaPaslon = selectedCandidate.querySelector('.info-card h3').textContent;
+
+    // 2. Ambil data siswa yang disimpan saat login
+    const namaSiswa = sessionStorage.getItem('namaSiswa');
+    const kelasSiswa = sessionStorage.getItem('kelasSiswa');
+
+    if (!namaSiswa || !kelasSiswa) {
+        alert("Sesi login tidak ditemukan atau sudah habis. Silakan login ulang.");
+        window.location.href = "index.html";
+        return;
+    }
+
+    // 3. Kirim data ke Google Sheets / Backend
+     kirimSuaraKeGoogleSheet(namaSiswa, kelasSiswa, namaPaslon);
+});
+    // Fungsi pengiriman ke Google Apps Script
+async function kirimSuaraKeGoogleSheet(nama, kelas, pilihan) {
+    // Ganti URL di bawah dengan URL Web App dari Google Apps Script Anda nanti
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxg-aGRClfY0uhF64k9rrp3RcU4DdGUroZTTpS4zHeJBXvXfegotmzNZWivbhb9g5qX/exec"; 
+
+    try {
+        await fetch(WEB_APP_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'vote',
+                nama: nama,
+                kelas: kelas,
+                pilihan: pilihan
+            })
+        });
+
+        // Sukses: Bersihkan sesi dan arahkan ke halaman Terima Kasih
+        sessionStorage.clear();
+        window.location.href = "tkucinghitam.html";
+
+    } catch (error) {
+        console.error("Gagal mengirim suara:", error);
+        alert("Terjadi kesalahan jaringan. Silakan periksa koneksi internet Anda.");
+        window.location.reload();
+    }
+}
 // Clicking outside the popup closes it
 confirmOverlay.addEventListener("click", event => {
     if (event.target === confirmOverlay) {
