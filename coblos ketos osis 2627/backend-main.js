@@ -42,6 +42,7 @@ function bukaKonfirmasi(element) {
     yesBtn.disabled = true;
     yesBtn.textContent = "Ya, Pilih";
     cancelBtn.textContent = "Batal";
+    yesBtn.style.display = "";
 
     confirmOverlay.classList.add("show");
 
