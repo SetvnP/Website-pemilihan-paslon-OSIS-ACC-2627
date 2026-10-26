@@ -43,20 +43,6 @@ body{
     height: 10.5%;
 }
 
-
-
-.pilihan {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    width: 100%;
-    box-sizing: border-box;
-    margin: 12em auto 0;
-    padding: 1rem;
-}
-
 .paslon-item {
     display: flex;
     align-items: center;
@@ -100,37 +86,81 @@ body{
     white-space: normal;
 }
 
+.pilihan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 12em auto 0;
+    padding: 1rem;
+}
 
-/* Darken the background when a candidate is selected */
-.pilihan.has-active::before {
-    content: "";
+/* Overlay covers the viewport */
+.candidate-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 5;
-}
-
-/* Keep all candidates visible */
-.pilihan.has-active .paslon-item:not(.active) {
-    position: relative;
-    z-index: 6;
-    opacity: 0.15;
-}
-
-/* Selected candidate */
-
-.pilihan.has-active .paslon-item.active {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 7;
-    width: min(850px, 90vw);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
     box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 100;
+}
+
+/* Show the overlay */
+.candidate-overlay.show {
+    display: flex;
+}
+
+/* The selected candidate's display card */
+.candidate-preview {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: min(850px, 100%);
     max-height: 85vh;
     overflow-y: auto;
-    opacity: 1;
+    box-sizing: border-box;
+    padding: 24px;
+    border-radius: 15px;
     background: rgba(35, 35, 45, 0.98);
+    color: white;
+    cursor: pointer;
 }
 
+.candidate-preview img {
+    width: min(250px, 35%);
+    height: auto;
+    flex-shrink: 0;
+}
 
+.candidate-preview .info-card {
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    margin-left: 0;
+    opacity: 1;
+    overflow: visible;
+    white-space: normal;
+    flex: 1;
+}
+
+/* Make the modal usable on smaller screens */
+@media (max-width: 600px) {
+    .candidate-preview {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .candidate-preview img {
+        width: min(220px, 100%);
+    }
+
+    .candidate-preview .info-card {
+        width: 100%;
+    }
+}
