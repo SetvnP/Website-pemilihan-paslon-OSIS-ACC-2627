@@ -11,13 +11,6 @@ body{
 	overflow-y: clip;
 }
 
-.Teks-Judul{
-	text-align:center;
-	font-size:5rem;
-	margin-top:90px;
-	margin-bottom:0;
-}
-
 .textmain{
 	position: absolute;
 	top: 3%;
@@ -77,11 +70,15 @@ body{
 }
 
 .info-card {
+    min-width: 0;
     width: 0;
     max-width: 0;
-    overflow: hidden;
+    max-height: 20vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     opacity: 0;
-    white-space: nowrap;
+    white-space: normal;
+    box-sizing: border-box;
     color: #fff;
     margin-left: 0;
     transition: width 0.5s ease,
@@ -90,12 +87,28 @@ body{
                 margin-left 0.5s ease;
 }
 
+.paslon-item.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+
+    width: min(1050px, calc(100vw - 32px));
+    max-height: 85vh;
+    box-sizing: border-box;
+    align-items: flex-start;
+}
+
 .paslon-item.active .info-card {
-    width: 300px;
-    max-width: 300px;
+    flex: 1;
+    width: 700px;
+    max-width: 700px;
+    min-width: 0;
+    max-height: calc(85vh - 40px);
+    overflow-y: auto;
     opacity: 1;
     margin-left: 25px;
-    white-space: normal;
 }
 
 
