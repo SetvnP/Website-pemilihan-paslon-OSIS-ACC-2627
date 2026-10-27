@@ -111,10 +111,11 @@ yesBtn.addEventListener("click", () => {
     yesBtn.style.display = "none";
     cancelBtn.textContent = "Tutup";
 
-    // 1. Ambil nama paslon yang dipilih
+    // Ambil nama paslon yang dipilih
     const namaPaslon = selectedCandidate.querySelector('.info-card h3').textContent;
+    const nomorPaslon = Number(namaPaslon.match(/\d+/)[0]);
 
-    // 2. Ambil data siswa yang disimpan saat login
+    // Ambil data siswa yang disimpan saat login
     const namaSiswa = sessionStorage.getItem('namaSiswa');
     const kelasSiswa = sessionStorage.getItem('kelasSiswa');
 
@@ -125,19 +126,18 @@ yesBtn.addEventListener("click", () => {
     }
 
     // 3. Kirim data ke Google Sheets / Backend
-     kirimSuaraKeGoogleSheet(namaSiswa, kelasSiswa, namaPaslon);
+     kirimSuaraKeGoogleSheet(namaSiswa, kelasSiswa, nomorPaslon);
 });
     // Fungsi pengiriman ke Google Apps Script
 async function kirimSuaraKeGoogleSheet(nama, kelas, pilihan) {
-    // Ganti URL di bawah dengan URL Web App dari Google Apps Script Anda nanti
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxxPMWrGlPTaSSCAvCT7I4UNA38jJ5gsjeqcT-KQkYN4Jv2HqWJycgtxMqsCePdAU5C/exec"; 
 
     try {
-        await fetch(WEB_APP_URL, {
+        const response = await fetch(WEB_APP_URL, {
             method: 'POST',
-            mode: 'no-cors',
+            redirect: 'follow',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/plain;charset=utf-8',
             },
             body: JSON.stringify({
                 action: 'vote',
@@ -147,16 +147,21 @@ async function kirimSuaraKeGoogleSheet(nama, kelas, pilihan) {
             })
         });
 
-        // Sukses: Bersihkan sesi dan arahkan ke halaman Terima Kasih
-        sessionStorage.clear();
-        window.location.href = "tkucinghitam.html";
+        const result = await response.json();
+        if (result.status === 'success') {
+            sessionStorage.clear();
+            window.location.href = "thankyou.html";
+        } else {
+            alert(result.message || "Gagal mencatat suara.");
+            window.location.reload();
+        }
 
     } catch (error) {
         console.error("Gagal mengirim suara:", error);
-        alert("Terjadi kesalahan jaringan. Silakan periksa koneksi internet Anda.");
-        window.location.reload();
+        alert("Terjadi kesalahan koneksi. Status suara belum dapat dipastikan. Hubungi petugas sebelum mencoba lagi.");
     }
 }
+
 // Clicking outside the popup closes it
 confirmOverlay.addEventListener("click", event => {
     if (event.target === confirmOverlay) {

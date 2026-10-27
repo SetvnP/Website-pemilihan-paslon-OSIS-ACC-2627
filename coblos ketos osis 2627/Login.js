@@ -27,9 +27,9 @@ loginButton.addEventListener('click', async function(event) {
         // Mengirim data login ke Google Sheets untuk diperiksa
         const response = await fetch("https://script.google.com/macros/s/AKfycbxxPMWrGlPTaSSCAvCT7I4UNA38jJ5gsjeqcT-KQkYN4Jv2HqWJycgtxMqsCePdAU5C/exec", {
             method: 'POST',
-            // Catatan: Untuk login kita butuh membaca respons, jadi gunakan mode normal (tanpa no-cors)
+            redirect: 'follow',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'text/plain;charset=utf-8',
             },
             body: JSON.stringify({
                 action: 'login',
@@ -61,5 +61,12 @@ loginButton.addEventListener('click', async function(event) {
         alert("Terjadi kesalahan koneksi ke server.");
         loginButton.textContent = "Login";
         loginButton.disabled = false;
+    }
+
+    if (result.status === 'success') {
+    sessionStorage.setItem('namaSiswa', inputNama);
+    sessionStorage.setItem('kelasSiswa', inputKelas);
+
+    window.location.href = "maincoblos.html";
     }
 });
