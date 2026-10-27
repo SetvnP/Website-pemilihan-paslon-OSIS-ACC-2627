@@ -130,7 +130,7 @@ yesBtn.addEventListener("click", () => {
     // Fungsi pengiriman ke Google Apps Script
 async function kirimSuaraKeGoogleSheet(nama, kelas, pilihan) {
     // Ganti URL di bawah dengan URL Web App dari Google Apps Script Anda nanti
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxg-aGRClfY0uhF64k9rrp3RcU4DdGUroZTTpS4zHeJBXvXfegotmzNZWivbhb9g5qX/exec"; 
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxxPMWrGlPTaSSCAvCT7I4UNA38jJ5gsjeqcT-KQkYN4Jv2HqWJycgtxMqsCePdAU5C/exec"; 
 
     try {
         await fetch(WEB_APP_URL, {
