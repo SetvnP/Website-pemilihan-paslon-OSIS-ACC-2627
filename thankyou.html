@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjaringan OSIS ACC 26-27</title>
+    <link rel="stylesheet" href="tkucinghitam.css">
+    <link rel="icon" type="image" href="pictures/ACC logo.png">
+    <link src="pictures/Thankyou/Thank you bg no text.png">
+
+</head>
+
+<header>
+    <img class="GambarAssisi" src="pictures/ACC logo.png" widht="175" height="75">
+    <img class="GambarOsis" src="pictures/Logo OSIS ACC.png" widht="205" height="105">
+</header>
+
+<body>
+
+    <img class="tulisan" src="pictures/Thankyou/Thank you text.png">
+    <img class="elementosis" src="pictures/Thankyou/OSIS elements tybg.png">
+    <img class="thankyougif" src="pictures/Thankyou/thank you gif (6s).gif">
+
+    <div class="timerbox">
+        <p class="coolcountdown" id="timerboom"></p>
+    </div>
+
+    <script>
+        let timer;
+
+        // Cukup gunakan satu fungsi myDisplayer saja
+        function myDisplayer(val) {
+            document.getElementById("timerboom").textContent = "(" + val + ")";
+        }
+
+        function countdown() {
+            clearInterval(timer);
+            let count = 6;
+            myDisplayer(count);
+
+            timer = setInterval(function() {
+                count--;
+                myDisplayer(count);
+
+                if (count === 0) {
+                    clearInterval(timer);
+                    window.location.href = "index.html";
+                }
+            }, 1000);
+        }
+        countdown();
+    </script>
+</body>
+</html>

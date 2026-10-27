@@ -1,0 +1,219 @@
+@font-face {
+    font-family: 'Alata';
+    src: url(xtra/Alata-Regular.ttf) format('TrueType Font');
+}
+
+body{
+    background-image: url(pictures/Main/Main\ bg.png);
+    background-size:cover;
+    font-family: 'Alata';
+    overflow-x: clip;
+	overflow-y: clip;
+}
+
+.textmain{
+	position: absolute;
+	top: 3%;
+	left: 50%;
+	transform: translateX(-50%);
+	height: auto;
+	width: 78%;
+	top: 9%;
+
+}
+
+.GambarOsis{
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    height: 15%;
+}
+
+.GambarAssisi{
+    position: absolute;
+    top: 3.2%;
+    left: 2%;
+    height: 10.5%;
+}
+
+.pilihan {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 12em auto 0;
+    padding: 1rem;
+}
+
+.paslon-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.4s ease, background 0.3s ease;
+}
+
+.paslon-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.paslon-item img {
+    width: 250px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.info-card {
+    min-width: 0;
+    width: 0;
+    max-width: 0;
+    max-height: 20vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 0;
+    white-space: normal;
+    box-sizing: border-box;
+    color: #fff;
+    margin-left: 0;
+    transition: width 0.5s ease,
+                max-width 0.5s ease,
+                opacity 0.5s ease,
+                margin-left 0.5s ease;
+}
+
+.paslon-item.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+
+    width: min(1050px, calc(100vw - 32px));
+    max-height: 85vh;
+    box-sizing: border-box;
+    align-items: flex-start;
+}
+
+.paslon-item.active .info-card {
+    flex: 1;
+    width: 700px;
+    max-width: 700px;
+    min-width: 0;
+    max-height: calc(85vh - 40px);
+    overflow-y: auto;
+    opacity: 1;
+    margin-left: 25px;
+}
+
+
+/* Darken the background when a candidate is selected */
+.pilihan.has-active::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 5;
+}
+
+/* Keep all candidates visible */
+.pilihan.has-active .paslon-item:not(.active) {
+    position: relative;
+    z-index: 6;
+    opacity: 0.15;
+}
+
+/* Selected candidate */
+
+.pilihan.has-active .paslon-item.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 7;
+    width: min(850px, 90vw);
+    box-sizing: border-box;
+    max-height: 85vh;
+    overflow-y: auto;
+    opacity: 1;
+    background: rgba(35, 35, 45, 0.98);
+}
+
+
+.confirm-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.confirm-overlay.show {
+    display: flex;
+}
+
+.confirm-box {
+    width: min(420px, 100%);
+    box-sizing: border-box;
+    padding: 30px;
+
+    color: white;
+    text-align: center;
+
+    background: #242432;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+.confirm-box h2 {
+    margin-top: 0;
+}
+
+.cooldown-text {
+    font-size: 0.9rem;
+    opacity: 0.75;
+}
+
+.confirm-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.confirm-buttons button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#cancelBtn {
+    color: white;
+    background: #555565;
+}
+
+#yesBtn {
+    color: white;
+    background: #3478db;
+}
+
+#yesBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
