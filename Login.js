@@ -3,6 +3,15 @@ const namaInput = document.querySelector('.namapengguna');
 const kelasSelect = document.getElementById('pilih-kelas');
 const passwordInput = document.querySelector('.Password');
 
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxxPMWrGlPTaSSCAvCT7I4UNA38jJ5gsjeqcT-KQkYN4Jv2HqWJycgtxMqsCePdAU5C/exec";
+
+function closeCredits() {
+    document.getElementById("creditsOverlay").classList.remove("show");
+
+    loginButton.textContent = "Login";
+    loginButton.disabled = false;
+}
+
 loginButton.addEventListener('click', async function(event) {
     event.preventDefault(); // Mencegah form reload
 
@@ -15,10 +24,18 @@ loginButton.addEventListener('click', async function(event) {
         return;
     }
 
+    const isCredits =
+    inputNama.trim().toLowerCase() === "credit" &&
+    inputKelas.trim() === "12.5" &&
+    inputPassword.trim() === "191026";
+
+    if (isCredits) {
+        document.getElementById("creditsOverlay").classList.add("show");
+        return;
+    }
+
     loginButton.textContent = "Memverifikasi...";
     loginButton.disabled = true;
-
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxxPMWrGlPTaSSCAvCT7I4UNA38jJ5gsjeqcT-KQkYN4Jv2HqWJycgtxMqsCePdAU5C/exec";
 
     try {
         const response = await fetch("https://script.google.com/macros/s/AKfycbxxPMWrGlPTaSSCAvCT7I4UNA38jJ5gsjeqcT-KQkYN4Jv2HqWJycgtxMqsCePdAU5C/exec", {
@@ -37,15 +54,12 @@ loginButton.addEventListener('click', async function(event) {
 
         const result = await response.json();
 
-          if (result.status === 'success') {
-            // Simpan identitas siswa ke memori browser
+        if (result.status === 'success') {
             sessionStorage.setItem('namaSiswa', inputNama);
             sessionStorage.setItem('kelasSiswa', inputKelas);
             
-            // Pindahkan ke halaman voting
             window.location.href = "maincoblos.html"; 
         } else {
-            // Jika password salah atau sudah pernah memilih
             alert(result.message);
             loginButton.textContent = "Login";
             loginButton.disabled = false;

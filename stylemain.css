@@ -129,7 +129,6 @@ body{
 }
 
 /* Selected candidate */
-
 .pilihan.has-active .paslon-item.active {
     position: fixed;
     top: 50%;

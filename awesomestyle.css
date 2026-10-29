@@ -7,6 +7,7 @@ body{
     background-image: url(pictures/Login/Login\ bg\ no\ text.png);
     background-size:cover;
     font-family: 'Alata';
+    overflow-x: hidden;
 }
 
 button{
@@ -23,6 +24,61 @@ input{
 
 h3:not(.test){
     margin-bottom: 2px;
+}
+
+.credits{
+    position: absolute;
+    display: flex;
+    font-family: 'Alata';
+    font-size: 1.2em;
+    color: white;
+    text-shadow: 0 0 4px #fff;
+    opacity: 40%;
+    right: 1%;
+}
+
+#creditsOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+#creditsOverlay.show {
+    display: flex;
+}
+
+.credits-popup {
+    position: relative;
+    width: min(425px, 90vw);
+    max-height: 85vh;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    background: rgba(35, 35, 45, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+.credits-picture {
+    height: 14em;
+    width: auto;
+}
+
+.buttonclose{
+    width: 7em;
+    height: 3em;
+    border-radius: 1em;
+    background: #6095e4;
+    color: #fff;
 }
 
 .test{

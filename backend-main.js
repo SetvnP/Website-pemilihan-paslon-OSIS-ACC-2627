@@ -11,13 +11,11 @@ let selectedCandidate = null;
 let confirmed = false;
 
 function pilihPaslon(element) {
-    // Clicking an already selected candidate opens the popup
     if (element.classList.contains("active")) {
         bukaKonfirmasi(element);
         return;
     }
 
-    // Select a different candidate
     document.querySelectorAll(".paslon-item").forEach(item => {
         item.classList.remove("active");
     });
@@ -50,7 +48,6 @@ function bukaKonfirmasi(element) {
 
     clearTimeout(cooldownTimer);
 
-    // Wait three seconds before enabling confirmation
     let seconds = 3;
     cooldownText.textContent =
         `Tunggu ${seconds} detik sebelum melanjutkan...`;
@@ -81,7 +78,6 @@ function tutupKonfirmasi() {
     cooldownTimer = null;
 }
 
-// Cancel button
 cancelBtn.addEventListener("click", () => {
     if (confirmed) {
         tutupKonfirmasi();
@@ -91,7 +87,6 @@ cancelBtn.addEventListener("click", () => {
     tutupKonfirmasi();
 });
 
-// Confirmation button
 yesBtn.addEventListener("click", () => {
     if (yesBtn.disabled || !selectedCandidate || confirmed) {
         return;
@@ -111,11 +106,9 @@ yesBtn.addEventListener("click", () => {
     yesBtn.style.display = "none";
     cancelBtn.textContent = "Tutup";
 
-    // Ambil nama paslon yang dipilih
     const namaPaslon = selectedCandidate.querySelector('.info-card h3').textContent;
     const nomorPaslon = Number(namaPaslon.match(/\d+/)[0]);
 
-    // Ambil data siswa yang disimpan saat login
     const namaSiswa = sessionStorage.getItem('namaSiswa');
     const kelasSiswa = sessionStorage.getItem('kelasSiswa');
 
@@ -125,10 +118,8 @@ yesBtn.addEventListener("click", () => {
         return;
     }
 
-    // 3. Kirim data ke Google Sheets / Backend
      kirimSuaraKeGoogleSheet(namaSiswa, kelasSiswa, nomorPaslon);
 });
-    // Fungsi pengiriman ke Google Apps Script
 async function kirimSuaraKeGoogleSheet(nama, kelas, pilihan) {
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxxPMWrGlPTaSSCAvCT7I4UNA38jJ5gsjeqcT-KQkYN4Jv2HqWJycgtxMqsCePdAU5C/exec"; 
 
@@ -162,19 +153,16 @@ async function kirimSuaraKeGoogleSheet(nama, kelas, pilihan) {
     }
 }
 
-// Clicking outside the popup closes it
 confirmOverlay.addEventListener("click", event => {
     if (event.target === confirmOverlay) {
         tutupKonfirmasi();
     }
 });
 
-// Prevent popup clicks from triggering the outside-click handler
 confirmOverlay.addEventListener("click", event => {
     event.stopPropagation();
 });
 
-// Clicking outside the selected candidate cancels the selection
 document.addEventListener("click", event => {
     if (confirmOverlay.classList.contains("show")) {
         return;
@@ -193,7 +181,6 @@ document.addEventListener("click", event => {
     }
 });
 
-// Reset the popup button for the next time it opens
 confirmOverlay.addEventListener("transitionend", () => {
     if (!confirmOverlay.classList.contains("show")) {
         yesBtn.style.display = "";
