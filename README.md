@@ -1,0 +1,4 @@
+NOT INTENDET FOR ANYONE
+Website khusus untuk memilih pasangan calon osis sekolah SMAK Santo Fransiskus Assisi pada tahun 2026/2027
+
+[![OpenRepos](https://img.shields.io/endpoint?url=https://openrepos.org/status/paslonosisacc2627.openrepos.org.json&style=flat-square)](https://paslonosisacc2627.openrepos.org/)
